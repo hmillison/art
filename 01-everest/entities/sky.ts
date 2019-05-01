@@ -12,12 +12,11 @@ export default function sky(scene: Scene): SceneEntity {
     'backgroundVideo'
   ) as HTMLVideoElement;
   const skyShape = new Mesh(
-    new BoxGeometry(2, 1, 1),
+    new BoxGeometry(3, 1, 1),
     new MeshBasicMaterial({
-      color: '#1e90ff',
       map: new VideoTexture(forestVideo),
       transparent: true,
-      opacity: 1
+      opacity: 0.2
     })
   );
 

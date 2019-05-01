@@ -2,6 +2,7 @@ import { SceneManager } from '../common';
 import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
 import sky from './entities/sky';
 import everest from './entities/everest';
+import foregroundMountains from './entities/foregroundMountains';
 
 class EverestManager extends SceneManager {
   createCamera() {
@@ -22,14 +23,14 @@ class EverestManager extends SceneManager {
   }
 
   createRenderer() {
-    const renderer = new WebGLRenderer();
+    const renderer = new WebGLRenderer({ alpha: true });
     return renderer;
   }
 }
 
 const manager = new EverestManager({
-  element: document.body,
-  entities: [sky, everest]
+  element: document.getElementById('canvas'),
+  entities: [sky, everest, foregroundMountains]
 });
 
 window.addEventListener('resize', () => manager.onResize());

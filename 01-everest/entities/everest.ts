@@ -5,33 +5,34 @@ import {
   VideoTexture,
   Scene,
   BoxBufferGeometry,
-  Color
+  Color,
+  TextureLoader,
+  Texture,
+  LinearFilter
 } from 'three';
-
+import mteverest from '../assets/mt-everest.png';
+console.log(mteverest);
 export default function everest(scene: Scene): SceneEntity {
-  debugger;
-  const video = document.getElementById('video') as HTMLVideoElement;
-  const videoCube = new Mesh(
-    new BoxBufferGeometry(2, 1, 1),
+  const mtTexture = new TextureLoader().load(mteverest);
+  mtTexture.minFilter = LinearFilter;
+  const everestObject = new Mesh(
+    new BoxBufferGeometry(5, 1, 1),
     new MeshBasicMaterial({
-      color: '#1e90ff',
-      map: new VideoTexture(video),
+      // color: '#1e90ff',
+      map: mtTexture,
       transparent: true,
-      opacity: 0.5
+      opacity: 1
     })
   );
 
-  document.body.addEventListener('mousemove', ({ screenX, screenY }) => {
-    const multiplier = Math.min(screenY / screenX, screenX / screenY);
-    const blue = (255 * multiplier).toFixed(0);
-    (videoCube.material as any).setValues({
-      color: new Color(`rgb(255, ${blue}, 0)`)
-    });
-  });
-
-  scene.add(videoCube);
+  scene.add(everestObject);
 
   return {
-    update() {}
+    update() {
+      everestObject.position.x += 0.001;
+      if (everestObject.position.x > 2.0) {
+        everestObject.position.x = -2;
+      }
+    }
   };
 }

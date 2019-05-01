@@ -7,7 +7,7 @@ import {
   Scene
 } from 'three';
 
-function sky(scene: Scene): SceneEntity {
+export default function sky(scene: Scene): SceneEntity {
   const forestVideo = document.getElementById('forestVid') as HTMLVideoElement;
   const skyShape = new Mesh(
     new BoxGeometry(2, 1, 1),

@@ -8,7 +8,8 @@ import {
   Color
 } from 'three';
 
-function sky(scene: Scene): SceneEntity {
+export default function everest(scene: Scene): SceneEntity {
+  debugger;
   const video = document.getElementById('video') as HTMLVideoElement;
   const videoCube = new Mesh(
     new BoxBufferGeometry(2, 1, 1),

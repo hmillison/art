@@ -1,5 +1,7 @@
 import { SceneManager } from '../common';
 import { PerspectiveCamera, Scene, WebGLRenderer } from 'three';
+import sky from './entities/sky';
+import everest from './entities/everest';
 
 class EverestManager extends SceneManager {
   createCamera() {
@@ -27,5 +29,9 @@ class EverestManager extends SceneManager {
 
 const manager = new EverestManager({
   element: document.body,
-  entities: []
+  entities: [sky, everest]
 });
+
+window.addEventListener('resize', () => manager.onResize());
+
+manager.render();

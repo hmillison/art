@@ -18,12 +18,10 @@ export abstract class SceneManager {
     element: HTMLElement;
     entities: any[];
   }) {
-    this.entities = entities.map(entity => {
-      const entityInstance = new entity(this.scene);
-      entityInstance.create(this.scene);
-      return entityInstance;
-    });
+    this.entities = entities.map(entity => entity(this.scene));
     element.appendChild(this.renderer.domElement);
+    this.onResize();
+    this.render();
   }
 
   public abstract createRenderer(): Renderer;
@@ -32,10 +30,11 @@ export abstract class SceneManager {
 
   public onResize() {
     // resize scene to fit window
+    this.renderer.setSize(window.innerWidth, window.innerHeight);
   }
 
   public render() {
-    requestAnimationFrame(this.render);
+    requestAnimationFrame(() => this.render());
     this.entities.forEach(entity => {
       entity.update(this.clock.getElapsedTime());
     });

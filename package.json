@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel ./01-everest/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "parcel build ./01-everest/index.html"
   },
   "author": "",
   "license": "ISC",
